@@ -1,6 +1,7 @@
 import iphone14Item1 from '../images/iphone-14-pro-1.jpg'
 import iphone14Item2 from '../images/iphone-14-pro-2.jpg'
 import iphone14Item3 from '../images/iphone-14-pro-3.jpg'
+import iphone14Item4 from '../images/iphone-14-pro-4.jpg'
 
 const products = [
   {
@@ -8,7 +9,7 @@ const products = [
     productName: "Bunnies by foxy illustrations ",
     imgUrl: iphone14Item1,
     category: "iphone 14 Pro",
-    price: 80000,
+    price: 8000,
     shortDesc:
       "일상 속 더욱 강력해진 보호력",
     description:
@@ -27,7 +28,7 @@ const products = [
     productName: "I Miss My Dog ",
     imgUrl: iphone14Item2,
     category: "iphone 14 Pro",
-    price: 88500,
+    price: 8500,
     shortDesc:
       "변색 걱정 NO",
     description:
@@ -46,7 +47,7 @@ const products = [
     productName: "Skater JOHN (Standard)",
     imgUrl: iphone14Item3,
     category: "iphone 14 Pro",
-    price: 88500,
+    price: 8800,
     shortDesc:
       "놓치지 않는 지속가능성",
     description:
@@ -59,7 +60,24 @@ const products = [
     ],
     avgRating: 4.5,
   },
-
+  {
+    id: "04",
+    productName: "xo kisses",
+    imgUrl: iphone14Item4,
+    category: "iphone 14 Pro",
+    price: 9000,
+    shortDesc:
+      "완벽한 페어링",
+    description:
+      "화면을 보호해주는 스크린 프로텍터부터, 폰 스트랩, 비즈 스트랩, 그리고 맥세이프 호환 액세서리를 커스텀 해 폰케이스와 매치해 보세요. 테크 액세서리를 통해 더욱 편리해진 일상이 여러분과 스마트폰 모두의 삶의 질을 향상시켜 줄 거랍니다!",
+    reviews: [
+      {
+        rating: 4.7,
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      },
+    ],
+    avgRating: 4.5,
+  },
 ]
 
   export default products;

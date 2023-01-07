@@ -1,0 +1,25 @@
+.footer{
+  background:var( --footer_bg) ;
+  padding: 30px 0px;
+}
+
+.footer__text h3{
+  padding-bottom: 20px;
+}
+
+.footer ul {
+  padding: 2rem 0;
+}
+
+.footer ul li {
+  padding:0 1.2rem;
+  cursor: pointer;
+}
+.footer ul li a {
+  color: var(--primary-color);
+}
+.footer__active {
+  font-weight: 700 !important; 
+}
+
+
