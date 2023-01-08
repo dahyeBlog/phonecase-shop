@@ -6,7 +6,7 @@ import iphone14Item4 from '../images/iphone-14-pro-4.jpg'
 const products = [
   {
     id: "01",
-    productName: "Bunnies by foxy illustrations ",
+    productName: "귀여운 토끼",
     imgUrl: iphone14Item1,
     category: "iphone 14 Pro",
     price: 8000,
@@ -25,7 +25,7 @@ const products = [
 
   {
     id: "02",
-    productName: "I Miss My Dog ",
+    productName: "깜찍한 공룡 ",
     imgUrl: iphone14Item2,
     category: "iphone 14 Pro",
     price: 8500,
@@ -44,7 +44,7 @@ const products = [
 
   {
     id: "03",
-    productName: "Skater JOHN (Standard)",
+    productName: "스케이트 타는 강아지",
     imgUrl: iphone14Item3,
     category: "iphone 14 Pro",
     price: 8800,

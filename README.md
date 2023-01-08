@@ -13,24 +13,26 @@
 
 ## 사용한 라이브러리
 - npm i @reduxjs/toolkit
+- npm i react-redux
 - npm i react-router-dom
 - npm install remixicon --save
 - npm install react-bootstrap bootstrap
 - npm i reactstrap  // bootstrap을 react에서 사용할 수 있도록 패키지로 만든것.
 - npm i framer-motion // 리액트 용 애니메이션 라이브러리
-
+- npm i react-toastify // 알림 라이브러리
 
 ## 라이브러리 사이트
  - [reactStrap][https://reactstrap.github.io/?path=/docs/components-layout--layout]
  - [REMIN ICON][https://remixicon.com/]
  - [framer][https://www.framer.com/docs/examples/]
+- [React-Toastify][https://fkhadra.github.io/react-toastify/autoClose]
 
 ## 이미지 사이트
 - https://www.freepik.com/
 
 ## 프로젝트 구현을 통해 배운 것
 
-### <NavLink>
+### NavLink
 - React-Router에서 지원하는 기능
 - 기존의 <Link> 와 다른점은 클릭 시 다른 페이지로 이동시킬 뿐만 아니라, isActive속성을 전달받아 현재 active된 요소를 선택하여 style 지정이나, className지정을 할 수 있다.
 
@@ -72,4 +74,26 @@ const Home = () => {
   return (
     <Helmet title={'Home'}></Helmet>
   )
+```
+
+### Header의 메뉴바 고정하기 
+
+```
+  const headerRef = useRef(null) // 고정하기 원하는 참조값지정
+
+  const stickyHeaderFunc = () => {
+    window.addEventListener('scroll', () => {
+      if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        headerRef.current.classList.add('sticky__header')
+      } else {
+        headerRef.current.classList.remove('sticky__header')
+      }
+    })
+  }
+
+  useEffect(() => {
+    stickyHeaderFunc()
+
+    return () => window.removeEventListener("scroll", stickyHeaderFunc)
+  }, [])
 ```

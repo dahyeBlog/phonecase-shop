@@ -4,8 +4,8 @@ import ProductCard from "./ProductCard";
 function ProductsList({data}) {
   return (
     <>
-    {data.map(item => (
-      <ProductCard item={item} key={item.id} />
+    {data?.map((item,index) => (
+      <ProductCard item={item} key={index} />
     ))}
      
 
