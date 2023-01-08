@@ -2,13 +2,17 @@ import iphone14Item1 from '../images/iphone-14-pro-1.jpg'
 import iphone14Item2 from '../images/iphone-14-pro-2.jpg'
 import iphone14Item3 from '../images/iphone-14-pro-3.jpg'
 import iphone14Item4 from '../images/iphone-14-pro-4.jpg'
+import samsungS21Item1 from '../images/samsung21-1.jpg'
+import samsungS21Item2 from '../images/samsung21-2.jpg'
+import samsungS21Item3 from '../images/samsung21-3.jpg'
+import samsungS21Item4 from '../images/samsung21-4.jpg'
 
 const products = [
   {
     id: "01",
     productName: "귀여운 토끼",
     imgUrl: iphone14Item1,
-    category: "iphone 14 Pro",
+    category: "iPhone",
     price: 8000,
     shortDesc:
       "일상 속 더욱 강력해진 보호력",
@@ -27,7 +31,7 @@ const products = [
     id: "02",
     productName: "깜찍한 공룡 ",
     imgUrl: iphone14Item2,
-    category: "iphone 14 Pro",
+    category: "iPhone",
     price: 8500,
     shortDesc:
       "변색 걱정 NO",
@@ -46,7 +50,7 @@ const products = [
     id: "03",
     productName: "스케이트 타는 강아지",
     imgUrl: iphone14Item3,
-    category: "iphone 14 Pro",
+    category: "iPhone",
     price: 8800,
     shortDesc:
       "놓치지 않는 지속가능성",
@@ -64,7 +68,79 @@ const products = [
     id: "04",
     productName: "xo kisses",
     imgUrl: iphone14Item4,
-    category: "iphone 14 Pro",
+    category: "iPhone",
+    price: 9000,
+    shortDesc:
+      "완벽한 페어링",
+    description:
+      "화면을 보호해주는 스크린 프로텍터부터, 폰 스트랩, 비즈 스트랩, 그리고 맥세이프 호환 액세서리를 커스텀 해 폰케이스와 매치해 보세요. 테크 액세서리를 통해 더욱 편리해진 일상이 여러분과 스마트폰 모두의 삶의 질을 향상시켜 줄 거랍니다!",
+    reviews: [
+      {
+        rating: 4.7,
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      },
+    ],
+    avgRating: 4.5,
+  },
+  {
+    id: "05",
+    productName: "Casetify",
+    imgUrl: samsungS21Item1,
+    category: "Samsung",
+    price: 9000,
+    shortDesc:
+      "완벽한 페어링",
+    description:
+      "화면을 보호해주는 스크린 프로텍터부터, 폰 스트랩, 비즈 스트랩, 그리고 맥세이프 호환 액세서리를 커스텀 해 폰케이스와 매치해 보세요. 테크 액세서리를 통해 더욱 편리해진 일상이 여러분과 스마트폰 모두의 삶의 질을 향상시켜 줄 거랍니다!",
+    reviews: [
+      {
+        rating: 4.7,
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      },
+    ],
+    avgRating: 4.5,
+  },
+  {
+    id: "06",
+    productName: "Rifle Paper Co.",
+    imgUrl: samsungS21Item2,
+    category: "Samsung",
+    price: 9500,
+    shortDesc:
+      "완벽한 페어링",
+    description:
+      "화면을 보호해주는 스크린 프로텍터부터, 폰 스트랩, 비즈 스트랩, 그리고 맥세이프 호환 액세서리를 커스텀 해 폰케이스와 매치해 보세요. 테크 액세서리를 통해 더욱 편리해진 일상이 여러분과 스마트폰 모두의 삶의 질을 향상시켜 줄 거랍니다!",
+    reviews: [
+      {
+        rating: 4.7,
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      },
+    ],
+    avgRating: 4.5,
+  },
+  {
+    id: "07",
+    productName: "INAP STICKER 01",
+    imgUrl: samsungS21Item3,
+    category: "Samsung",
+    price: 7500,
+    shortDesc:
+      "완벽한 페어링",
+    description:
+      "화면을 보호해주는 스크린 프로텍터부터, 폰 스트랩, 비즈 스트랩, 그리고 맥세이프 호환 액세서리를 커스텀 해 폰케이스와 매치해 보세요. 테크 액세서리를 통해 더욱 편리해진 일상이 여러분과 스마트폰 모두의 삶의 질을 향상시켜 줄 거랍니다!",
+    reviews: [
+      {
+        rating: 4.7,
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      },
+    ],
+    avgRating: 4.5,
+  },
+  {
+    id: "08",
+    productName: "Ariel Stickermania",
+    imgUrl: samsungS21Item4,
+    category: "Samsung",
     price: 9000,
     shortDesc:
       "완벽한 페어링",

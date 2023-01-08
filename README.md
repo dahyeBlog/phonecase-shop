@@ -97,3 +97,28 @@ const Home = () => {
     return () => window.removeEventListener("scroll", stickyHeaderFunc)
   }, [])
 ```
+
+### select 요소에 option filter 기능 넣기
+```
+
+// state로 products라는 데이터를 받아온다.
+
+  const [productsData, setProductsData] = useState(products)
+  
+  const handlerFilter = (e) => {
+    const filterValue = e.target.value; // 선택한 e값의 value를 filterValue에 할당한다. 
+    if(filterValue === 'iPhone') { // 선택한 filterValue 값이 'iPhone' 과 일치하다면,
+      const filteredProducts = products.filter((item) => item.category === 'iPhone') // filteredProducts의 변수 안에 import 해온 products의 데이터에 filter 함수로 'iPhone' 과 일치하는 category의 값을 filteredProducts의 변수에 할당한다. 
+      setProductsData(filteredProducts)
+    }
+  }
+  console.log(productsData);
+
+
+// return 아래의 select앨리먼트에 handlerFilter라 지정한 함수를 입력한다.
+<select onChange={handlerFilter}>
+ <option>카테코리 필터</option>
+
+```
+
+

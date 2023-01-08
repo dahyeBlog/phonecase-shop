@@ -32,7 +32,7 @@ const Home = () => {
 
   useEffect(() => {
     const filteredProducts = products.filter(
-      (item) => item.category === "iphone 14 Pro"
+      (item) => item.category === "iPhone"
     );
 
     setData(filteredProducts);
