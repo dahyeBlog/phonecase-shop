@@ -72,14 +72,14 @@ const Signup = () => {
 
 
   return (
-    <section>
+    <section className="signup__section">
       <Container>
         <Row>
           <Col lg="12">
             <h3>회원가입</h3>
-            <form action="" onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="name">이름</label>
+            <form className="signupForm" onSubmit={handleSubmit}>
+              <div className="signupForm__list">
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
                   name="name"
@@ -88,7 +88,7 @@ const Signup = () => {
                 />
               </div>
 
-              <div>
+              <div className="signupForm__list">
                 <label htmlFor="email">E-mail</label>
                 <input
                   type="email"
@@ -98,7 +98,7 @@ const Signup = () => {
                 />
               </div>
 
-              <div>
+              <div className="signupForm__list">
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"

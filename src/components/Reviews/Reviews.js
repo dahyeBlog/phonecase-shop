@@ -32,7 +32,7 @@ const Reviews = ({ reviewList, id }) => {
       <div className="review__list">
         <h4>아이디 : {reviewList.email} </h4>
         <h4>리뷰 : {reviewList.review} </h4>
-        {user.uid === reviewList.creatorId ? (
+        {user?.uid === reviewList.creatorId ? (
           <>
             <button
               className="buy__btn"

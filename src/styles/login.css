@@ -1,13 +1,14 @@
-.signup__section{
+.login__section{
   display: flex;
   align-items: center;
   justify-content: center;
   height: calc(100vh - 336px);
+
 }
-.signup__section h3 {
+.login__section h3 {
   text-align: center;
 }
-.signupForm{
+.loginForm{
   width: 350px;
   margin: 20px auto;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -16,7 +17,7 @@
   border-radius: 5px;
 }
 
-.signupForm__list{
+.loginForm__list{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,10 +25,14 @@
 }
 
 
-.signupForm__list input {
+.loginForm__list input {
   width: 72%;
   padding: 3px 0px;
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.16);
   outline: none;
+}
+
+.btnContainer button{
+  margin-right: 10px;
 }

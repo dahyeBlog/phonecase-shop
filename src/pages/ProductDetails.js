@@ -118,28 +118,30 @@ const ProductDetails = () => {
             <Col lg="12">
               <div className="review__wrapper text-center">
                 <h4>리뷰 남기기</h4>
-                <p>{user.email}</p>
 
-                <form className="review__form" onSubmit={createReviewHandler}>
-                  <div className="review_form__group">
-                    {/* <p>{reviews[0].email}</p> */}
-                    <textarea
-                      type="text"
-                      rows={4}
-                      value={reviewText}
-                      onChange={(e) => setReviewText(e.target.value)}
-                      placeholder="리뷰를 작성하세요."
-                    />
-                  </div>
-                  <motion.button
-                    whileTap={{ scale: 1.2 }}
-                    className="buy__btn"
-                    type="submit"
-                  >
-                    리뷰 남기기
-                  </motion.button>
-                </form>
-
+                {user ? (
+                  <form className="review__form" onSubmit={createReviewHandler}>
+                    <div className="review_form__group">
+                      <p>{user.email}</p>
+                      <textarea
+                        type="text"
+                        rows={4}
+                        value={reviewText}
+                        onChange={(e) => setReviewText(e.target.value)}
+                        placeholder="리뷰를 작성하세요."
+                      />
+                    </div>
+                    <motion.button
+                      whileTap={{ scale: 1.2 }}
+                      className="buy__btn"
+                      type="submit"
+                    >
+                      리뷰 남기기
+                    </motion.button>
+                  </form>
+                ) : (
+                  <><p>로그인 후 리뷰를 남겨주세요.</p></>
+                )}
                 <div className="review__comments">
                   <p> 현재 리뷰 수 ({reviews.length})</p>
 
