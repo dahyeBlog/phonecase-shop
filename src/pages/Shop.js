@@ -26,8 +26,17 @@ const Shop = () => {
       ); 
       setProductsData(filteredProducts);
     }
-    
   };
+
+
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+
+    const searchedProducts = products.filter(item => item.productName.toLowerCase().includes(searchTerm.toLowerCase()))
+    
+    setProductsData(searchedProducts)
+  }
+
 
   return (
     <Helmet title={"Shop"}>
@@ -39,7 +48,7 @@ const Shop = () => {
             <Col lg="6" md="6">
               <div className="filter__widget">
                 <select onChange={handlerFilter}>
-                  <option>카테코리 필터</option>
+                  <option>카테고리 필터</option>
                   <option value="iPhone">iPhone</option>
                   <option value="Samsung">Samsung</option>
                 </select>
@@ -48,7 +57,7 @@ const Shop = () => {
 
             <Col lg="6" md="6">
               <div className="search__box">
-                <input type="text" placeholder="검색어를 입력하세요." />
+                <input type="text" onChange={handleSearch} placeholder="검색어를 입력하세요." />
                 <span>
                   <i className="ri-search-line"></i>
                 </span>
@@ -62,7 +71,7 @@ const Shop = () => {
         <Container>
           <Row>
             {productsData.length === 0 ? (
-              <h1>결과값을 찾을 수 없습니다.😅 </h1>
+              <h1 className="text-center">결과값을 찾을 수 없습니다.😅 </h1>
             ) : (
               <ProductsList data={productsData} />
             )}

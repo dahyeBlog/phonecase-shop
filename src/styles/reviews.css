@@ -1,0 +1,33 @@
+.review__container{
+  width: 100%;
+}
+
+.review__container input {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.review__list{
+  margin-bottom: 20px;
+}
+
+.review__list h4{
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #eee;
+  font-size: 1.0rem;
+  margin-right: 10px;
+}
+
+.review__list button {
+  margin: 5px;
+}
+
+.showInput{
+  display: block;
+}
+
+.noShowInput{
+  display: none;
+}

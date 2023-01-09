@@ -5,6 +5,9 @@
 
 ## 구현한 기능
 - 회원가입, 로그인, 로그아웃
+- 상품 장바구니 상품 추가, 삭제, 주문
+- 찾고자하는 상품 검색 및 필터
+- 상품 게시판에 댓글 달기
 - 
 
 
@@ -20,6 +23,9 @@
 - npm i reactstrap  // bootstrap을 react에서 사용할 수 있도록 패키지로 만든것.
 - npm i framer-motion // 리액트 용 애니메이션 라이브러리
 - npm i react-toastify // 알림 라이브러리
+- npm install firebase //firebase 설치
+- npm install dotenv
+
 
 ## 라이브러리 사이트
  - [reactStrap][https://reactstrap.github.io/?path=/docs/components-layout--layout]
@@ -121,4 +127,6 @@ const Home = () => {
 
 ```
 
-
+### useParams()
+- 리액트 라우터 라이브러리에서 제공하는 함수, React 16.8 버전 이상에서만 구동이 가능하다. 파라미터 값을 URL을 통해서 넘겨겨 받은 페이지에서 사용할 수 있도록 도와준다.
+- 예를 들어 여러개의 쇼핑제품의 정보가 담겨 있는 데이터를 출력하고, 그 제품 상세페이지로 들어가도록 구현한다면, 쇼핑제품의 id 값을 URL로 넘겨 세부페이지에 id값에 해당하는 영화정보만 출력하도록 만들 수 있도록 한다. 
