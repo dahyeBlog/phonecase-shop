@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../UI/CommonSection";
 import products from "../assets/data/products";
 import { useParams } from "react-router-dom";
-import { cartActions } from "../assets/redux/slices/cartSlice";
+import { cartActions } from "../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,13 +18,14 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
-import { firestoreDb } from "../firebase";
+import { auth, firestoreDb } from "../firebase";
+import { AuthContext } from "../context/auth";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
+  const { user } = useContext(AuthContext);
 
   const [reviews, setReviews] = useState([]);
-  const [nameInput, setNameInput] = useState("");
   const [reviewText, setReviewText] = useState("");
 
   const { id } = useParams(); //usePrams로 id를 넘겨 받는다.
@@ -49,16 +50,16 @@ const ProductDetails = () => {
   // 리뷰를 Firebase에 저장하기
   const createReviewHandler = async (e) => {
     e.preventDefault();
-    if (nameInput === "" || reviewText === "") {
-      alert("이름 및 리뷰를 작성해주세요.");
+    if (reviewText === "") {
+      alert("리뷰를 작성해주세요.");
       return;
     }
     await addDoc(collection(firestoreDb, id), {
-      name: nameInput,
+      email: user.email,
       review: reviewText,
       createdAt: new Date(),
+      creatorId: user.uid,
     });
-    setNameInput("");
     setReviewText("");
   };
 
@@ -117,16 +118,11 @@ const ProductDetails = () => {
             <Col lg="12">
               <div className="review__wrapper text-center">
                 <h4>리뷰 남기기</h4>
+                <p>{user.email}</p>
 
                 <form className="review__form" onSubmit={createReviewHandler}>
                   <div className="review_form__group">
-                    <input
-                      type="text"
-                      value={nameInput}
-                      onChange={(e) => setNameInput(e.target.value)}
-                      placeholder="이름을 작성하세요."
-                    />
-
+                    {/* <p>{reviews[0].email}</p> */}
                     <textarea
                       type="text"
                       rows={4}

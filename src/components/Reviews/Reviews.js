@@ -1,11 +1,13 @@
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../context/auth";
 import { firestoreDb } from "../../firebase";
-import "../../styles/reviews.css";
+import "./reviews.css";
 
 const Reviews = ({ reviewList, id }) => {
   const [newReview, setNewReview] = useState("");
   const [editing, setEditing] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setNewReview(e.target.value);
@@ -28,18 +30,27 @@ const Reviews = ({ reviewList, id }) => {
   return (
     <div className="review__container">
       <div className="review__list">
-        <h4>이름 : {reviewList.name} </h4>
+        <h4>아이디 : {reviewList.email} </h4>
         <h4>리뷰 : {reviewList.review} </h4>
-        <button
-          className="buy__btn"
-          onClick={() => updateReviewHandler(reviewList, newReview)}
-        >
-          <i className="ri-edit-line"></i>
-        </button>
+        {user.uid === reviewList.creatorId ? (
+          <>
+            <button
+              className="buy__btn"
+              onClick={() => updateReviewHandler(reviewList, newReview)}
+            >
+              <i className="ri-edit-line"></i>
+            </button>
 
-        <button className="buy__btn" onClick={() => handleDelete(reviewList.id)}>
-          <i className="ri-delete-bin-fill"></i>
-        </button>
+            <button
+              className="buy__btn"
+              onClick={() => handleDelete(reviewList.id)}
+            >
+              <i className="ri-delete-bin-fill"></i>
+            </button>
+          </>
+        ) : (
+          ""
+        )}
       </div>
       <input
         type="text"

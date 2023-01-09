@@ -18,8 +18,5 @@
 .footer ul li a {
   color: var(--primary-color);
 }
-.footer__active {
-  font-weight: 700 !important; 
-}
 
 
