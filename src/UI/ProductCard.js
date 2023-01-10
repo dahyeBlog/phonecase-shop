@@ -10,19 +10,20 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ProductCard = ({ item }) => {
   const dispatch = useDispatch();
-
+  
   const addToCart = () => {
     dispatch(
       cartActions.addItem({
         id: item.id,
         productName: item.productName,
         price: item.price,
-        image: item.imgUrl,
+        imgUrl: item.imgUrl,
       })
     );
-
     toast.success("상품이 장바구니에 담겼습니다.");
   };
+
+
 
   return (
     <Col lg="3" md="4" className="mb-2">

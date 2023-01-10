@@ -1,12 +1,14 @@
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-import React, { useContext, useState } from "react";
+import { async } from "@firebase/util";
+import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import React, { useContext,useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth";
-import { firestoreDb } from "../../firebase";
+import { auth, firestoreDb } from "../../firebase";
 import "./reviews.css";
 
 const Reviews = ({ reviewList, id }) => {
   const [newReview, setNewReview] = useState("");
   const [editing, setEditing] = useState(false);
+  const [userInfo, setUserInfo] = useState('')
   const { user } = useContext(AuthContext);
 
   const handleChange = (e) => {
@@ -26,7 +28,7 @@ const Reviews = ({ reviewList, id }) => {
   const handleDelete = async (reviewsId) => {
     await deleteDoc(doc(firestoreDb, id, reviewsId));
   };
-
+  
   return (
     <div className="review__container">
       <div className="review__list">

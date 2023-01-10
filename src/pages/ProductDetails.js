@@ -34,7 +34,7 @@ const ProductDetails = () => {
   const { imgUrl, productName, category, price, description } = product;
 
   // 제품 카트에 담기
-  const addToCart = () => {
+  const addToCart = async () => {
     dispatch(
       cartActions.addItem({
         id: product.id,
@@ -45,6 +45,17 @@ const ProductDetails = () => {
     );
 
     toast.success("상품이 장바구니에 담겼습니다.");
+
+
+    // await addDoc(collection(firestoreDb, 'cart'), {
+    //   id: product.id,
+    //   productName: product.productName,
+    //   price: product.price,
+    //   image: product.imgUrl,
+    //   createdAt: new Date(),
+    //   creatorId: user.uid,
+    // })
+
   };
 
   // 리뷰를 Firebase에 저장하기

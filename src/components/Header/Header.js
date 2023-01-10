@@ -46,7 +46,7 @@ const Header = () => {
       }
     });
   };
-  
+
   useEffect(() => {
     stickyHeaderFunc();
 
@@ -85,7 +85,9 @@ const Header = () => {
 
             <div className="nav__icons">
               <span className="cart__icon">
-                <i className="ri-shopping-bag-line"></i>
+                <Link to="/cart">
+                  <i className="ri-shopping-bag-line"></i>
+                </Link>
                 <span className="badge">{totalQuantity}</span>
               </span>
 

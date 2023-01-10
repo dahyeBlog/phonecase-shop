@@ -23,11 +23,6 @@ const Footer = () => {
     navigate("/login");
   };
 
-        // // 로그인 성공 시 데이터 수정
-        // await updateDoc(doc(firestoreDb, "users", result.user.uid), {
-        //   inLogged: true,
-        // })
-
   return (
     <footer className="footer">
       <Container>
