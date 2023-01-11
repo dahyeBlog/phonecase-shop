@@ -1,21 +1,18 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Col, Container, Row, Form, FormGroup } from "reactstrap";
-import {
-  ref,
-  getDownloadURL,
-  uploadBytes,
-} from "firebase/storage";
-import React, { useState } from "react";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { auth, firestoreDb } from "../firebase";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 import { storage } from "../firebase";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 
 import "../styles/login.css";
 import Helmet from "../components/Helmet/Helmet";
+import { async } from "@firebase/util";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -23,54 +20,59 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState(null);
   const navigate = useNavigate();
+
+
 
   // firebase 이용해서 회원가입하기
   const signupHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+
+    
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
+
       const user = userCredential.user;
-
-      const storageRef = ref(
-        storage,
-        `images/${new Date().getTime()} - ${file.name}`
-      );
-
-      uploadBytes(storageRef, file)
-        .then(() => {
-          getDownloadURL(storageRef)
-            .then((url) => {
-              setUrl(url);
-
-              updateProfile(user, {
-                displayName: username,
-                photoURL: url,
-              });
-
-              setDoc(doc(firestoreDb, "users", user.uid), {
-                uid: user.uid,
-                displayName: username,
-                email,
-                photoURL: url,
-              });
-            
-              toast.success("회원가입이 완료되었습니다.👏");
-              setLoading(false);
-              navigate("/login");
+        
+      const storageRef = ref(storage, `images/${new Date() + username}`);
+      
+      await uploadBytesResumable(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          try {
+            // update profile
+            await updateProfile(user, {
+              displayName: username,
+              photoURL: downloadURL
             })
-          setFile(null);
-        })
 
+            // create user on firestore
+            await setDoc(doc(firestoreDb, "users", user.uid), {
+              uid: user.uid,
+              displayName: username,
+              email,
+              photoURL: downloadURL,
+            })
+
+            setLoading(false);
+            toast.success("회원가입이 완료되었습니다.");
+            navigate("/", { replace: true });
+          } catch (error) {
+            setLoading(false);
+            toast.error("에러가 발생했습니다.");
+          }
+        })
+      })
+
+      
     } catch (error) {
-      toast.error("오류가 발생했습니다.😭");
       setLoading(false);
+      toast.error("에러가 발생했습니다.");
     }
   };
 

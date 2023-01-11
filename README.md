@@ -154,3 +154,117 @@ export default ProtectedRoute;
 
 
 ```
+### 발생한 오류
+- 회원가입 시 프로필 사진을 등록 한 후 다음과 같은 오류가 발생했다. 
+- 계속 방법을 찾아보다 아래와 같은 코드로 변경 후 오류가 사라졌다. 
+```
+// 오류
+Uncaught (in promise) FirebaseError: Firebase Storage: Object 'images/Wed Jan 11 2023 17:20:15 GMT+0900 (한국 표준시)test' does not exist. (storage/object-not-found)
+
+```
+
+```
+  // 회원가입 및 프로필 사진 업로드 코드 (변경 후) 
+  // firebase 이용해서 회원가입하기
+  const signupHandler = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+
+    
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+        
+      const storageRef = ref(storage, `images/${new Date() + username}`);
+      
+      await uploadBytesResumable(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          try {
+            // update profile
+            await updateProfile(user, {
+              displayName: username,
+              photoURL: downloadURL
+            })
+
+            // create user on firestore
+            await setDoc(doc(firestoreDb, "users", user.uid), {
+              uid: user.uid,
+              displayName: username,
+              email,
+              photoURL: downloadURL,
+            })
+
+            setLoading(false);
+            toast.success("회원가입이 완료되었습니다.");
+            navigate("/", { replace: true });
+          } catch (error) {
+            setLoading(false);
+            toast.error("에러가 발생했습니다.");
+          }
+        })
+      })
+
+    } catch (error) {
+      setLoading(false);
+      toast.error("에러가 발생했습니다.");
+    }
+  };
+
+```
+
+```
+  //오류가 발생한 코드 (변경 전)
+  // firebase 이용해서 회원가입하기
+  const signupHandler = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+      const storageRef = ref(storage, `images/${new Date() + username}`);
+
+
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+       uploadTask.on(
+         (error) => {
+          toast.error(error.message);
+         },
+         () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+           
+            // 사용자 프로필파일 업데이트
+            await updateProfile(user, {
+               displayName: username,
+               photoURL: downloadURL,
+            });
+
+            // firestore에 사용자 정보 저장하기
+
+             await setDoc(doc(firestoreDb, "users", user.uid), {
+              uid: user.uid,
+               displayName: username,
+              email,
+              photoURL: downloadURL,
+             });
+          });
+         }
+       );
+       setLoading(false);
+      toast.success("회원가입이 완료되었습니다.");
+
+       navigate("/", { replace: true });
+
+```

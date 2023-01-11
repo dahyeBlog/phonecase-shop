@@ -36,7 +36,7 @@ const Header = () => {
   const menuRef = useRef(null);
   const profileActionRef = useRef(null);
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
@@ -51,15 +51,16 @@ const Header = () => {
     });
   };
 
-
   const logout = () => {
-    signOut(auth).then(() => {
-      toast.success('로그아웃이 완료되었습니다. ')
-      navigate('/login')
-    }).catch(error => {
-      toast.error(error.message)
-    })
-  }
+    signOut(auth)
+      .then(() => {
+        toast.success("로그아웃이 완료되었습니다. ");
+        navigate("/login");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   useEffect(() => {
     stickyHeaderFunc();
@@ -111,7 +112,7 @@ const Header = () => {
               <div className="profile">
                 <motion.img
                   whileTap={{ scale: 1.2 }}
-                  src={user ? user?.photoURL : userImg}
+                  src={user ? user.photoURL : userImg}
                   alt="user"
                   onClick={toggleProfileActions}
                 />

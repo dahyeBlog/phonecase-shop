@@ -31,8 +31,8 @@ const Login = () => {
       const user = userCredential.user;
 
       console.log(user);
-      toast.success("로그인에 성공하셨습니다.");
       setLoading(false);
+      toast.success("로그인에 성공하셨습니다.");
       navigate("/checkout");
 
     } catch (error) {
