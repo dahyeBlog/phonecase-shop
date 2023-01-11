@@ -8,8 +8,8 @@ import ProductDetails from "../pages/ProductDetails";
 import Checkout from "../pages/Checkout";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import Profile from "../pages/Profile";
 import { AuthContext } from "../context/auth";
+import ProtectedRoute from "./ProtectedRoute";
 
 const Routers = () => {
   const { user } = useContext(AuthContext);
@@ -21,12 +21,17 @@ const Routers = () => {
       <Route path="/shop" element={<Shop />} />
       <Route path="/shop/:id" element={<ProductDetails />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/checkout" element={<Checkout />} />
-      
 
-      {user ? (
-        <Route path="/profile" element={<Profile />} />
-      ) : (
+      <Route
+        path="/checkout"
+        element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        }
+      />
+
+      {!user && (
         <>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

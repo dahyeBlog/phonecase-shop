@@ -53,3 +53,11 @@ section {
   color: var(--primary-color);
   padding-bottom: 20px;
 }
+
+input {
+  width: 72%;
+  padding: 3px 5px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  outline: none;
+}

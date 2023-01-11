@@ -3,9 +3,9 @@ import "./footer.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
-import { doc, updateDoc } from "firebase/firestore";
-import { auth, firestoreDb } from "../../firebase";
+import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const year = new Date().getFullYear();
 
@@ -14,14 +14,14 @@ const Footer = () => {
   const navigate = useNavigate();
 
   // 로그아웃 기능
-  const handleSignout = async () => {
-    // 문서의 일부 필드를 업데이트
-    await updateDoc(doc(firestoreDb, "users", auth.currentUser.uid), {
-      isLogged: false,
-    });
-    await signOut(auth);
-    navigate("/login");
-  };
+  const logout = () => {
+    signOut(auth).then(() => {
+      toast.success('로그아웃이 완료되었습니다. ')
+      navigate('/login')
+    }).catch(error => {
+      toast.error(error.message)
+    })
+  }
 
   return (
     <footer className="footer">
@@ -35,7 +35,7 @@ const Footer = () => {
               {user ? (
                 <>
                   <li>
-                    <Link to="/login" onClick={handleSignout}>
+                    <Link to="/login" onClick={logout}>
                       로그아웃
                     </Link>
                   </li>

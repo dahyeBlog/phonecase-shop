@@ -137,3 +137,20 @@ const Home = () => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 ```
+
+### ProtectedRoute파일을 만들어 계정이 없다면 login 페이지로 이동시키기
+```
+import React, { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { AuthContext } from "../context/auth";
+
+const ProtectedRoute = ({ children }) => {
+  const { user } = useContext(AuthContext);
+
+  return user ? children : <Navigate to='login' />;
+};
+
+export default ProtectedRoute;
+
+
+```

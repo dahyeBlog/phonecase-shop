@@ -88,6 +88,36 @@
   z-index: 9;
 }
 
+ .profile__actions {
+  position: absolute;
+  top: 92%;
+  right: -40px;
+  width: 130px;
+  z-index: 10;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: #fff;
+  line-height: 30px;
+  display: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.profile__actions a{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show__profileActions {
+  display: block;
+}
+
+
 .mobile__menu{
   font-size: 1.3rem;
   color: var(--primary-color);

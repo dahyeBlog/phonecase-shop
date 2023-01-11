@@ -6,8 +6,8 @@ import products from "../assets/data/products";
 import { useParams } from "react-router-dom";
 import { cartActions } from "../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
 import "../styles/product-detail.css";
 import Reviews from "../components/Reviews/Reviews";
@@ -45,17 +45,6 @@ const ProductDetails = () => {
     );
 
     toast.success("상품이 장바구니에 담겼습니다.");
-
-
-    // await addDoc(collection(firestoreDb, 'cart'), {
-    //   id: product.id,
-    //   productName: product.productName,
-    //   price: product.price,
-    //   image: product.imgUrl,
-    //   createdAt: new Date(),
-    //   creatorId: user.uid,
-    // })
-
   };
 
   // 리뷰를 Firebase에 저장하기
@@ -151,7 +140,9 @@ const ProductDetails = () => {
                     </motion.button>
                   </form>
                 ) : (
-                  <><p>로그인 후 리뷰를 남겨주세요.</p></>
+                  <>
+                    <p>로그인 후 리뷰를 남겨주세요.</p>
+                  </>
                 )}
                 <div className="review__comments">
                   <p> 현재 리뷰 수 ({reviews.length})</p>
